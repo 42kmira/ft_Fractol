@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 17:20:10 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/20 21:32:26 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/21 11:24:48 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # define X 0
 # define Y 1
+# define I 1
 # define Z 2
 
 typedef struct		s_color

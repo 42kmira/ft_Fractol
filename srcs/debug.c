@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/20 17:05:56 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/21 12:34:10 by kmira            ###   ########.fr       */
+/*   Created: 2019/06/21 11:41:56 by kmira             #+#    #+#             */
+/*   Updated: 2019/06/21 11:48:02 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int		main(void)
+void	print_pixel_loc(t_pixel *pixel, int changed)
 {
-	t_app		app;
-	t_pixel		**pixel_array;
-	t_camera	camera;
-
-	app = create_application();
-	camera = create_camera();
-	pixel_array = create_pixel_array();
-
-
-
-	return (0);
+	if (changed)
+		printf("NEW PIXEL: (%d, %d)\n", pixel->real_value, pixel->imaginary_value);
+	else
+		printf("PIXEL:     (%d, %d)\n", pixel->real_value, pixel->imaginary_value);
 }

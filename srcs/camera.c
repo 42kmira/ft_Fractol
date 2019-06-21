@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/20 17:05:56 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/21 12:34:10 by kmira            ###   ########.fr       */
+/*   Created: 2019/06/21 11:33:32 by kmira             #+#    #+#             */
+/*   Updated: 2019/06/21 12:18:02 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int		main(void)
+t_camera	create_camera(void)
 {
-	t_app		app;
-	t_pixel		**pixel_array;
-	t_camera	camera;
+	t_camera camera;
 
-	app = create_application();
-	camera = create_camera();
-	pixel_array = create_pixel_array();
-
-
-
-	return (0);
+	camera.pos[X] = 200;
+	camera.pos[Y] = 70;
+	camera.constant = 2;
+	camera.scaling[X] = 1;
+	camera.scaling[Y] = 1;
+	return (camera);
 }
