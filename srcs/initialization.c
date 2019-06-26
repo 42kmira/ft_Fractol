@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 19:53:39 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/20 22:53:29 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/21 20:21:00 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ t_pixel	**create_pixel_array(void)
 		j = 0;
 		while (j < WINDOW_WIDTH)
 		{
-			pixel_array[i][j].real_value = j - (WINDOW_HEIGHT / 2);
-			pixel_array[i][j].imaginary_value = (WINDOW_WIDTH / 2) - i;
+			pixel_array[i][j].pos[X] = j - (WINDOW_HEIGHT / 2);
+			pixel_array[i][j].pos[I] = (WINDOW_WIDTH / 2) - i;
 			j++;
 		}
 		i++;

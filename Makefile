@@ -6,7 +6,7 @@
 #    By: kmira <kmira@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/18 23:26:37 by kmira             #+#    #+#              #
-#    Updated: 2019/06/21 11:44:18 by kmira            ###   ########.fr        #
+#    Updated: 2019/06/25 16:05:57 by kmira            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,9 @@ FILES = \
 		application \
 		camera \
 		color \
+		exit_application \
 		initialization \
+		input_application \
 		main \
 		render \
 
@@ -49,7 +51,7 @@ $(LIBMLX):
 	@echo "\033[32m""Making minlibx"
 	@make -C minilibx_macos/ clean && make -C minilibx_macos/
 
-$(OBJ):
+$(OBJS):
 	@gcc $(FLAGS) -I$(INCLUDES) -c $(SRCS)
 
 clean:
