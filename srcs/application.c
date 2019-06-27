@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 17:41:34 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/26 01:01:39 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/27 03:59:04 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,16 @@ t_app	create_application(void)
 #define VP void *
 #define PARAMS (VP)app, (VP)camera, (VP)pixel_array, (VP)key_table, (VP)&pressed_keys
 
-int		mouse_move(int x, int y, void *params)
+int		mouse_move(int x, int y, void **params)
 {
+	t_camera	*camera;
+
+	camera = params[CAMERA];
+	camera->real_constant = x / (float)WINDOW_HEIGHT;
+	camera->imaginary_constant = y / (float)WINDOW_WIDTH;
+	// printf("Constant changing: (%Lf, %Lf)\n", camera->real_constant, camera->imaginary_constant);
+
+	render(params);
 	(void)params;
 	(void)x;
 	(void)y;
@@ -82,6 +90,13 @@ void	application_loop(t_app *app, t_camera *camera, t_pixel **pixel_array)
 
 	pressed_keys = 0;
 	key_table = get_key_table();
+
+	set_translate(&pressed_keys, camera);
+	set_zoom(&pressed_keys, camera);
+	transform_points(pixel_array, camera);
+	color_gradient(app->image_address, pixel_array, camera);
+	mlx_clear_window(app->mlx_connection, app->window);
+	mlx_put_image_to_window(app->mlx_connection, app->window, app->image, 0, 0);
 
 	if (DEBUG)
 	{

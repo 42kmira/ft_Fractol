@@ -6,13 +6,13 @@
 #    By: kmira <kmira@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/18 23:26:37 by kmira             #+#    #+#              #
-#    Updated: 2019/06/25 16:05:57 by kmira            ###   ########.fr        #
+#    Updated: 2019/06/26 16:13:54 by kmira            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -march=native -O3
 
 INCLUDES = includes
 LIBRARY = libft/libft.a

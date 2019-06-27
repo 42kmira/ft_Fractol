@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 11:33:32 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/25 16:41:21 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/27 04:36:54 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ t_camera	create_camera(void)
 
 	camera.pos[X] = 0;
 	camera.pos[Y] = 0;
-	camera.constant = 2;
-	camera.scaling = ZOOM_STEPS;
+	camera.scaling = 5400000;
+	camera.real_constant = 0.285;
+	camera.imaginary_constant = 0.01;
+	camera.type = 'J';
 	return (camera);
 }

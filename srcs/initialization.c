@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 19:53:39 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/21 20:21:00 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/27 02:08:31 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,12 @@ t_pixel	**create_pixel_array(void)
 		j = 0;
 		while (j < WINDOW_WIDTH)
 		{
-			pixel_array[i][j].pos[X] = j - (WINDOW_HEIGHT / 2);
-			pixel_array[i][j].pos[I] = (WINDOW_WIDTH / 2) - i;
+			pixel_array[i][j].pos[X] = j - (WINDOW_HEIGHT / (long double)2);
+			pixel_array[i][j].pos[I] = (WINDOW_WIDTH / (long double)2) - i;
+			// pixel_array[i][j].pos[X] = pixel_array[i][j].pos[X] / (WINDOW_HEIGHT / (long double)2);
+			// pixel_array[i][j].pos[Y] = pixel_array[i][j].pos[Y] / (WINDOW_WIDTH / (long double)2);
+
+			// printf("(%.4f, %.4f)\n", pixel_array[i][j].pos[X], pixel_array[i][j].pos[Y]);
 			j++;
 		}
 		i++;

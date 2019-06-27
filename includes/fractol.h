@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 17:20:15 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/26 02:45:16 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/27 03:49:39 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@
 ** MARCOS
 */
 
-# define WINDOW_HEIGHT 500
-# define WINDOW_WIDTH 500
+# define WINDOW_HEIGHT 1000
+# define WINDOW_WIDTH 1000
 # define WINDOW_NAME "Fractol"
 
 # define BYTES_PER_PIXEL 4
@@ -54,8 +54,7 @@
 # define KEYS_PRESSED 4
 
 # define DELTA_TRANSLATE 10
-# define DELTA_SCALING 1
-# define ZOOM_STEPS 10
+# define DELTA_SCALING 50
 
 # define DEBUG 0
 
@@ -110,5 +109,7 @@ t_camera	create_camera(void);
 */
 
 void	close_application(void **params);
+
+void	color_gradient(char *image_address, t_pixel **pixel_array, t_camera *camera);
 
 #endif

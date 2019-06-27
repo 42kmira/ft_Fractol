@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 23:09:46 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/26 01:00:01 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/27 03:59:57 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,36 +16,41 @@
 
 void	translate_point(t_pixel *pixel_point, t_camera *camera)
 {
-	float real_offset;
-	float imaginary_offset;
-
-	real_offset = camera->pos[X] * camera->scaling;
-	imaginary_offset = camera->pos[Y] * camera->scaling;
-
-	pixel_point->real_value = pixel_point->real_value + real_offset;
-	pixel_point->imaginary_value = pixel_point->imaginary_value  + imaginary_offset;
+	pixel_point->real_value = pixel_point->pos[X] + camera->pos[X];
+	pixel_point->imaginary_value = pixel_point->pos[Y] + camera->pos[Y];
 }
 
-void	scale_point(t_pixel *pixel_point, t_camera *camera)
+void	scale_point(t_pixel *pixel_point, t_camera *camera, t_pixel *midpoint)
 {
-	// printf("SCALE: %f\n", camera->scaling);
-	pixel_point->real_value = pixel_point->pos[X] * camera->scaling;
-	pixel_point->imaginary_value  = pixel_point->pos[I] * camera->scaling;
+	long double	delta_real;
+	long double	delta_imaginary;
+
+
+	delta_real = pixel_point->real_value - midpoint->real_value;
+	delta_imaginary = pixel_point->imaginary_value - midpoint->imaginary_value;
+	delta_real = delta_real * camera->scaling;
+	delta_imaginary = delta_imaginary * camera->scaling;
+	pixel_point->real_value = midpoint->real_value + delta_real;
+	pixel_point->imaginary_value  = midpoint->imaginary_value + delta_imaginary;
 }
 
 void	transform_points(t_pixel **pixel_array, t_camera *camera)
 {
 	size_t	i;
 	size_t	j;
+	t_pixel	*midpoint;
 
 	i = 0;
+	midpoint = &pixel_array[WINDOW_HEIGHT / 2][WINDOW_WIDTH / 2];
+	translate_point(midpoint, camera);
+
 	while (i < WINDOW_HEIGHT)
 	{
 		j = 0;
 		while (j < WINDOW_WIDTH)
 		{
-			scale_point(&pixel_array[i][j], camera);
 			translate_point(&pixel_array[i][j], camera);
+			scale_point(&pixel_array[i][j], camera, midpoint);
 			j++;
 		}
 		i++;
@@ -66,15 +71,16 @@ int		render(void **params)
 	key_table = params[KEY_DISPATCH_TABLE];
 	pressed_keys = *(t_key_flags *)params[KEYS_PRESSED];
 
-	if (pressed_keys & ANY_PRESSED)
-	{
-		if (pressed_keys & KEY_ESC && !DEBUG)
+	// if (pressed_keys & ANY_PRESSED)
+	// {
+		if (pressed_keys & KEY_ESC)
 			close_application(params);
 		set_translate(&pressed_keys, camera);
 		set_zoom(params[KEYS_PRESSED], camera);
 		transform_points(pixel_array, camera);
-		color_gradient(app->image_address, pixel_array);
+		color_gradient(app->image_address, pixel_array, camera);
+		mlx_clear_window(app->mlx_connection, app->window);
 		mlx_put_image_to_window(app->mlx_connection, app->window, app->image, 0, 0);
-	}
+	// }
 	return (1);
 }
