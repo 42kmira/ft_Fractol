@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 17:20:10 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/27 04:35:18 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/03 05:07:21 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef	struct		s_camera
 	long double		real_constant;
 	long double		imaginary_constant;
 	char			type;
+	int				color_type;
 }					t_camera;
 
 typedef int			t_key_flags;
@@ -65,21 +66,22 @@ typedef struct		s_user_event
 	t_key_flags		key_pressed;
 }					t_event;
 
-# define ANY_PRESSED 0b11111111110
+# define ANY_PRESSED 0b101111111110
 
 enum				e_keys
 {
-    KEY_UP           = 0b00000000010,
-    KEY_DOWN         = 0b00000000100,
-    KEY_LEFT         = 0b00000001000,
-    KEY_RIGHT        = 0b00000010000,
-    KEY_ZOOM_IN      = 0b00000100000,
-    KEY_ZOOM_OUT     = 0b00001000000,
-    KEY_ESC          = 0b00010000000,
-    WHEEL_UP         = 0b00100000000,
-    WHEEL_DOWN       = 0b01000000000,
-    MANDELBROT_ON    = 0b10000000000,
-    UNDEFINED_KEY    = 0b00000000001
+    KEY_UP           = 0b000000000010,
+    KEY_DOWN         = 0b000000000100,
+    KEY_LEFT         = 0b000000001000,
+    KEY_RIGHT        = 0b000000010000,
+    KEY_ZOOM_IN      = 0b000000100000,
+    KEY_ZOOM_OUT     = 0b000001000000,
+    KEY_ESC          = 0b000010000000,
+    WHEEL_UP         = 0b000100000000,
+    WHEEL_DOWN       = 0b001000000000,
+    FREEZE           = 0b010000000000,
+    MANDELBROT_ON    = 0b100000000000,
+    UNDEFINED_KEY    = 0b000000000001
 };
 
 #endif

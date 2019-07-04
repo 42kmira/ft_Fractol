@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 17:20:15 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/27 03:49:39 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/03 22:51:36 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,10 @@
 # include "libft.h"
 
 # include <limits.h>
+# include <math.h>
+# include <pthread.h>
 # include <stdlib.h>
 # include <string.h>
-# include <math.h>
-
-# include "debug.h"
 
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
@@ -58,13 +57,17 @@
 
 # define DEBUG 0
 
+# define IMG_ADDR 0
+# define CAMERA 1
+# define SECT 3
+
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
 ** FILE: application.c
 */
 
-t_app	create_application(void);
-void	application_loop(t_app *app, t_camera *camera, t_pixel **pixel_array);
+t_app		create_application(void);
+void		application_loop(t_app *app, t_camera *camera, t_pixel **pixel_arr);
 
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
@@ -72,10 +75,10 @@ void	application_loop(t_app *app, t_camera *camera, t_pixel **pixel_array);
 ** Handles user input (e.g Keyboard, Mouse)whilst the program is running.
 */
 
-int		switch_key_flag_on(int key, void **params);
-int		switch_key_flag_off(int key, void **params);
-void	set_translate(t_key_flags *key_flags, t_camera *camera);
-void	set_zoom(t_key_flags *key_flag, t_camera *camera);
+int			switch_key_flag_on(int key, void **params);
+int			switch_key_flag_off(int key, void **params);
+void		set_translate(t_key_flags *key_flags, t_camera *camera);
+void		set_zoom(t_key_flags *key_flag, t_camera *camera);
 
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
@@ -83,7 +86,7 @@ void	set_zoom(t_key_flags *key_flag, t_camera *camera);
 ** Preperation step for Fractol
 */
 
-t_pixel	**create_pixel_array(void);
+t_pixel		**create_pixel_array(void);
 
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
@@ -91,8 +94,8 @@ t_pixel	**create_pixel_array(void);
 ** Handles the rendering of points and transformations of them
 */
 
-void	transform_points(t_pixel **pixel_arr, t_camera *camera);
-int		render(void **params);
+void		transform_points(t_pixel **pixel_arr, t_camera *camera);
+int			render(void **params);
 
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
@@ -108,8 +111,8 @@ t_camera	create_camera(void);
 ** Functions having to do with the t_camera structure.
 */
 
-void	close_application(void **params);
+void		close_application(void **params);
 
-void	color_gradient(char *image_address, t_pixel **pixel_array, t_camera *camera);
+void		*color_gradient(void *params);
 
 #endif

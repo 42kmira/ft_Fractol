@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 12:23:01 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/27 06:03:14 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/03 05:30:00 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,20 @@ int		switch_key_flag_on(int key, void **params)
 	pressed_keys = params[KEYS_PRESSED];
 	while (key_dispatch_table[i].key != 0)
 	{
-		if (key_dispatch_table[i].key == key)
+		if (key_dispatch_table[i].key == key && key_dispatch_table[i].key != FREEZE)
 			*pressed_keys = *pressed_keys | key_dispatch_table[i].key_flag;
 		i++;
 	}
 	if (key == 46 && ((t_camera *)(params[CAMERA]))->type != 'M')
 		((t_camera *)(params[CAMERA]))->type = 'M';
-	else if (key == 46)
+	else if (key == 38 && ((t_camera *)(params[CAMERA]))->type != 'J')
 		((t_camera *)(params[CAMERA]))->type = 'J';
 	else if (key == 8 && ((t_camera *)(params[CAMERA]))->type != 'C')
 		((t_camera *)(params[CAMERA]))->type = 'C';
+	if (key == 43)
+		((t_camera *)params[CAMERA])->color_type ^= 1;
+	if (key == 3)
+		*pressed_keys = *pressed_keys ^ FREEZE;
 	return (1);
 }
 

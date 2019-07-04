@@ -6,7 +6,7 @@
 #    By: kmira <kmira@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/18 23:26:37 by kmira             #+#    #+#              #
-#    Updated: 2019/06/26 16:13:54 by kmira            ###   ########.fr        #
+#    Updated: 2019/07/03 22:49:55 by kmira            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,6 @@ LIBRARY = libft/libft.a
 LIBMLX = minilibx_macos/libmlx.a
 
 FILES = \
-		debug \
 		application \
 		camera \
 		color \
