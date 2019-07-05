@@ -6,27 +6,11 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 17:41:34 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/03 22:48:54 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/04 19:12:14 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-t_keys	*get_key_table(void)
-{
-	t_keys *key_dispatch;
-
-	key_dispatch = malloc(sizeof(*key_dispatch) * (8));
-	key_dispatch[0] = (t_keys){123, KEY_UP};
-	key_dispatch[1] = (t_keys){124, KEY_DOWN};
-	key_dispatch[2] = (t_keys){125, KEY_LEFT};
-	key_dispatch[3] = (t_keys){126, KEY_RIGHT};
-	key_dispatch[4] = (t_keys){6, KEY_ZOOM_IN};
-	key_dispatch[5] = (t_keys){7, KEY_ZOOM_OUT};
-	key_dispatch[6] = (t_keys){53, KEY_ESC};
-	key_dispatch[7] = (t_keys){0, UNDEFINED_KEY};
-	return (key_dispatch);
-}
 
 t_app	create_application(void)
 {
@@ -48,35 +32,6 @@ t_app	create_application(void)
 		(int[1]){WINDOW_WIDTH * BYTES_PER_PIXEL},
 		(int[1]){0});
 	return (app);
-}
-
-int		mouse_move(int x, int y, void **params)
-{
-	t_camera	*camera;
-	t_key_flags	*keys_pressed;
-
-	camera = params[CAMERA];
-	keys_pressed = params[KEYS_PRESSED];
-	if (!(FREEZE & *keys_pressed))
-	{
-		camera->real_constant = x / (float)WINDOW_HEIGHT;
-		camera->imaginary_constant = y / (float)WINDOW_WIDTH;
-	}
-	return (1);
-}
-
-int		mouse_pressed(int key, int x, int y, void **params)
-{
-	t_key_flags	*keys_pressed;
-
-	keys_pressed = params[KEYS_PRESSED];
-	if (key == 4)
-		*keys_pressed = *keys_pressed | WHEEL_UP;
-	if (key == 5)
-		*keys_pressed = *keys_pressed | WHEEL_DOWN;
-	(void)x;
-	(void)y;
-	return (1);
 }
 
 #define VP (void *)

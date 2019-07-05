@@ -6,11 +6,40 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 12:23:01 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/03 05:30:00 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/04 20:01:38 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+int		mouse_move(int x, int y, void **params)
+{
+	t_camera	*camera;
+	t_key_flags	*keys_pressed;
+
+	camera = params[CAMERA];
+	keys_pressed = params[KEYS_PRESSED];
+	if (!(FREEZE & *keys_pressed))
+	{
+		camera->real_constant = x / (float)WINDOW_HEIGHT;
+		camera->imaginary_constant = y / (float)WINDOW_WIDTH;
+	}
+	return (1);
+}
+
+int		mouse_pressed(int key, int x, int y, void **params)
+{
+	t_key_flags	*keys_pressed;
+
+	keys_pressed = params[KEYS_PRESSED];
+	if (key == 4)
+		*keys_pressed = *keys_pressed | WHEEL_UP;
+	if (key == 5)
+		*keys_pressed = *keys_pressed | WHEEL_DOWN;
+	(void)x;
+	(void)y;
+	return (1);
+}
 
 int		switch_key_flag_on(int key, void **params)
 {
@@ -19,23 +48,19 @@ int		switch_key_flag_on(int key, void **params)
 	t_key_flags	*pressed_keys;
 
 	i = 0;
-
 	key_dispatch_table = params[KEY_DISPATCH_TABLE];
 	pressed_keys = params[KEYS_PRESSED];
 	while (key_dispatch_table[i].key != 0)
 	{
-		if (key_dispatch_table[i].key == key && key_dispatch_table[i].key != FREEZE)
+		if (key_dispatch_table[i].key == key)
 			*pressed_keys = *pressed_keys | key_dispatch_table[i].key_flag;
 		i++;
 	}
-	if (key == 46 && ((t_camera *)(params[CAMERA]))->type != 'M')
-		((t_camera *)(params[CAMERA]))->type = 'M';
-	else if (key == 38 && ((t_camera *)(params[CAMERA]))->type != 'J')
-		((t_camera *)(params[CAMERA]))->type = 'J';
-	else if (key == 8 && ((t_camera *)(params[CAMERA]))->type != 'C')
-		((t_camera *)(params[CAMERA]))->type = 'C';
+	set_fractal_type((t_camera *)(params[CAMERA]), key);
 	if (key == 43)
-		((t_camera *)params[CAMERA])->color_type ^= 1;
+		((t_camera *)params[CAMERA])->color_type += 1;
+	if (((t_camera *)params[CAMERA])->color_type == 4)
+		((t_camera *)params[CAMERA])->color_type = 1;
 	if (key == 3)
 		*pressed_keys = *pressed_keys ^ FREEZE;
 	return (1);
@@ -57,36 +82,4 @@ int		switch_key_flag_off(int key, void **params)
 		i++;
 	}
 	return (1);
-}
-
-void	set_translate(t_key_flags *key_flags, t_camera *camera)
-{
-	t_key_flags key_pressed;
-
-	key_pressed = *key_flags;
-	if (key_pressed & KEY_UP)
-		camera->pos[X] += -DELTA_TRANSLATE * camera->scaling;
-	if (key_pressed & KEY_DOWN)
-		camera->pos[X] += DELTA_TRANSLATE * camera->scaling;
-	if (key_pressed & KEY_LEFT)
-		camera->pos[Y] += DELTA_TRANSLATE * camera->scaling;
-	if (key_pressed & KEY_RIGHT)
-		camera->pos[Y] += -DELTA_TRANSLATE * camera->scaling;
-}
-
-void	set_zoom(t_key_flags *key_flag, t_camera *camera)
-{
-	t_key_flags key_pressed;
-
-	key_pressed = *key_flag;
-	if (key_pressed & WHEEL_UP)
-	{
-		camera->scaling = camera->scaling * 1.2;
-		*key_flag = *key_flag ^ WHEEL_UP;
-	}
-	if (key_pressed & WHEEL_DOWN)
-	{
-		camera->scaling = camera->scaling / 1.2;
-		*key_flag = *key_flag ^ WHEEL_DOWN;
-	}
 }

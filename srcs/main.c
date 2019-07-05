@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 17:05:56 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/03 03:56:36 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/04 20:35:44 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,5 @@ int		main(void)
 	camera = create_camera();
 	pixel_array = create_pixel_array();
 	application_loop(&app, &camera, pixel_array);
-
 	return (0);
 }

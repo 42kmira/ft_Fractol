@@ -6,22 +6,34 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 12:23:54 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/03 22:44:22 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/04 20:48:59 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
+#include <stdio.h>
+
 void	close_application(void **params)
 {
-	t_app	*app;
+	t_app		*app;
 	t_key_flags	*dispatch_table;
+	t_pixel		**pixel_array;
+	size_t		i;
 
 	app = params[APPLICATION];
 	dispatch_table = params[KEY_DISPATCH_TABLE];
+	pixel_array = params[PIXEL_ARRAY];
 	free(dispatch_table);
-	mlx_destroy_image(app->mlx_connection, app->window);
-	system("leaks fractol");
-	sleep(1);
+	i = 0;
+	mlx_destroy_image(app->mlx_connection, app->image_address);
+	mlx_destroy_window(app->mlx_connection, app->window);
+	while (i < WINDOW_HEIGHT)
+	{
+		free(pixel_array[i]);
+		pixel_array[i] = NULL;
+		i++;
+	}
+	free(pixel_array);
 	EXIT(GREEN"Program closed successfully");
 }

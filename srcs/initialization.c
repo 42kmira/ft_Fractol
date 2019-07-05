@@ -6,13 +6,13 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 19:53:39 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/03 22:29:13 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/04 20:49:53 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-t_pixel	**create_pixel_array(void)
+t_pixel		**create_pixel_array(void)
 {
 	size_t	i;
 	size_t	j;
@@ -33,4 +33,18 @@ t_pixel	**create_pixel_array(void)
 		i++;
 	}
 	return (pixel_array);
+}
+
+t_camera	create_camera(void)
+{
+	t_camera camera;
+
+	camera.pos[X] = 0;
+	camera.pos[Y] = 0;
+	camera.scaling = 5400000;
+	camera.real_constant = 0.285;
+	camera.imaginary_constant = 0.01;
+	camera.type = 'M';
+	camera.color_type = 1;
+	return (camera);
 }

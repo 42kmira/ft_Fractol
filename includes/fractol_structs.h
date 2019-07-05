@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 17:20:10 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/03 05:07:21 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/04 20:05:40 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,18 +70,18 @@ typedef struct		s_user_event
 
 enum				e_keys
 {
-    KEY_UP           = 0b000000000010,
-    KEY_DOWN         = 0b000000000100,
-    KEY_LEFT         = 0b000000001000,
-    KEY_RIGHT        = 0b000000010000,
-    KEY_ZOOM_IN      = 0b000000100000,
-    KEY_ZOOM_OUT     = 0b000001000000,
-    KEY_ESC          = 0b000010000000,
-    WHEEL_UP         = 0b000100000000,
-    WHEEL_DOWN       = 0b001000000000,
-    FREEZE           = 0b010000000000,
-    MANDELBROT_ON    = 0b100000000000,
-    UNDEFINED_KEY    = 0b000000000001
+	KEY_UP = 0b000000000010,
+	KEY_DOWN = 0b000000000100,
+	KEY_LEFT = 0b000000001000,
+	KEY_RIGHT = 0b000000010000,
+	KEY_ZOOM_IN = 0b000000100000,
+	KEY_ZOOM_OUT = 0b000001000000,
+	KEY_ESC = 0b000010000000,
+	WHEEL_UP = 0b000100000000,
+	WHEEL_DOWN = 0b001000000000,
+	FREEZE = 0b010000000000,
+	MANDELBROT_ON = 0b100000000000,
+	UNDEFINED_KEY = 0b000000000001
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 23:30:50 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/21 12:27:38 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/04 20:41:01 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,6 @@
 # define BOLDCYAN		"\033[1m\033[36m"
 # define BOLDWHITE		"\033[1m\033[37m"
 
-# define COLOR_RESET	"[0m"
+# define COLOR_RESET	"\033[0m"
 
 #endif

@@ -6,7 +6,7 @@
 #    By: kmira <kmira@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/18 23:26:37 by kmira             #+#    #+#              #
-#    Updated: 2019/07/03 22:49:55 by kmira            ###   ########.fr        #
+#    Updated: 2019/07/04 20:30:45 by kmira            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,14 +19,16 @@ LIBRARY = libft/libft.a
 LIBMLX = minilibx_macos/libmlx.a
 
 FILES = \
+		application_utils \
 		application \
-		camera \
-		color \
+		color_pallete \
+		color_pixel \
 		exit_application \
 		initialization \
 		input_application \
 		main \
 		render \
+		transform \
 
 MLB = -L./minilibx_macos/ -lmlx -framework OpenGL -framework AppKit
 
