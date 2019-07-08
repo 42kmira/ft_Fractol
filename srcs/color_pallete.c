@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color.c                                            :+:      :+:    :+:   */
+/*   color_pallete.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 20:03:41 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/04 03:19:59 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/07 22:18:50 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 #define CHAMELEON_SKIN 1
 #define NEW_RETRO_SKIN 2
-#define MINIMALIST_SKIN 3
+#define GRAYSCALE_SKIN 3
 
 void	set_color(char *image_addr, size_t i, char iter, t_camera *camera)
 {
@@ -45,7 +45,7 @@ void	set_color(char *image_addr, size_t i, char iter, t_camera *camera)
 		image_addr[i + 0] = (char)((160) / (powf(2, (iter - 125)
 		* (iter - 125) * (.0005)))) + iter / (float)2;
 	}
-	else if (camera->color_type == MINIMALIST_SKIN)
+	else if (camera->color_type == GRAYSCALE_SKIN)
 	{
 		image_addr[i + 2] = (char)iter;
 		image_addr[i + 1] = (char)iter;

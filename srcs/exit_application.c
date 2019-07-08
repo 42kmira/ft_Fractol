@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 12:23:54 by kmira             #+#    #+#             */
-/*   Updated: 2019/07/04 20:48:59 by kmira            ###   ########.fr       */
+/*   Updated: 2019/07/07 22:21:47 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@ void	close_application(void **params)
 	pixel_array = params[PIXEL_ARRAY];
 	free(dispatch_table);
 	i = 0;
-	mlx_destroy_image(app->mlx_connection, app->image_address);
+	printf("MLX %p, WINDOW: %p, ADDR: %p, IMAGE: %p\n", app->mlx_connection, app->window, app->image_address, app->image);
 	mlx_destroy_window(app->mlx_connection, app->window);
+	mlx_destroy_image(app->mlx_connection, app->image);
 	while (i < WINDOW_HEIGHT)
 	{
 		free(pixel_array[i]);
