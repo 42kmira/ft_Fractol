@@ -1,5 +1,9 @@
 # ft_Fractol
 
+<br>
+<img align="left" height="250" src="https://github.com/42kmira/ft_Fractol/blob/master/resources/Untitled.png" />
+<br>
+
 Mandelbrot set, Julia set and Burning Ship fractols!
 
 All the fractols zoom, and respond to mouse movements so use cautiously. Instructions should be found when the program runs.
