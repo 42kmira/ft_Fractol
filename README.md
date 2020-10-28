@@ -26,3 +26,5 @@ Can you find the explosion of sea life and manta rays in burning ship?
 
 <img align="left" height="350" width="350" src="https://github.com/MrColour/ft_Fractol/blob/master/resources/Peacock%20Manta%20Rays2.png" />
 <br>
+
+Note: I did not code minilibx. It was provided to us by our school. All the other work however was coded by me.
